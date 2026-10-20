@@ -1,18 +1,27 @@
-# SOLAR-CORE: HELIOS V2.0 Dependencies
-# Python 3.10+ / 3.11+ / 3.12+
+# ==============================================================================
+# SOLAR-CORE: HELIOS™ V1.0 | Production Requirements
+# Lead Systems Architect: Kelvin Jesús Flores Yarihuaman (MECES 3 / EQF 7)
+# Yggdrasil Environmental Systems · Sovereign Open-Core / Enterprise Architecture
+# ==============================================================================
 
-# Web Framework & Visual Analytics
+# Core Application & Interactive Command & Control (C2)
 streamlit>=1.35.0
+plotly>=5.22.0
 
-# Scientific & Mathematical Computing
+# Numerical Engines, Solar Physics & Atmospheric Dispersion
 numpy>=1.24.0
 pandas>=2.0.0
 scipy>=1.10.0
 matplotlib>=3.7.0
+pydantic>=2.0.0
 
-# Neural Lab (PINN Surrogate & Deep Learning)
+# Physics-Informed Deep Learning (Transformer PINN Surrogate Models)
 torch>=2.0.0
 
-# Geodata & File IO
-pydantic>=2.0.0
+# Telemetry & Data Protocols (JRC PVGIS v5.2 API & Configs)
+requests>=2.31.0
 pyyaml>=6.0.0
+openpyxl>=3.1.2
+
+# Automated Quality Assurance & Verification
+pytest>=8.0.0
