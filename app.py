@@ -204,7 +204,7 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "🌿 3. Evaluación Ambiental EIA (Ley 21/2013)",
     "💨 4. Dispersión Atmosférica (PM10 Obra)",
     "💰 5. Project Finance DCF (25 Años)",
-    "🧠 6. Motor PINN, Centinela & Bóveda"
+    "🧠 6. Modelo PINN & Validación Física"
 ])
 
 with tab1:

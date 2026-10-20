@@ -38,11 +38,11 @@ except (ImportError, ModuleNotFoundError):
 
 
 def render_view(site_config: dict):
-    st.markdown("## 🧠 6. Motores Neuronales (PINN & TD3), Centinela Físico & Bóveda Epistémica")
+    st.markdown("## 🧠 6. Modelos Neuronales (PINN & TD3) y Validación de Restricciones Físicas")
     st.markdown(
         "*Modelos de Aprendizaje Profundo Informados por la Física entrenados en GPU NVIDIA L4: "
         "Transformer PINN espacio-temporal (Open-Core), Agente Continuo TD3 para BESS Revenue Stacking (Enterprise), "
-        "Centinela de Invariantes Físicas (Physics Sentinel) y Bóveda Científica/Jurídica (ATHENA & ASTRAEA).*"
+        "verificación de restricciones termodinámicas en tiempo de ejecución y referencias técnicas y normativas.*"
     )
 
     is_enterprise_mode = bool(site_config.get("is_enterprise", True)) and HAS_ENTERPRISE
@@ -395,7 +395,7 @@ def render_view(site_config: dict):
         """)
 
         st.markdown("---")
-        st.markdown("#### 🔬 Simulador Interactivo de Clamping Termodinámico (`PhysicsSentinelSidecar`)")
+        st.markdown("#### 🔬 Verificación Interactiva de Límites Físicos y Termodinámicos")
         sentinel_inst = PhysicsSentinelSidecar(core_id="HELIOS")
         param_labels = {
             "eficiencia_modulo_pct": "Eficiencia de Módulo n-TOPCon (%) [Límite Shockley-Queisser: 33,7%]",
@@ -427,7 +427,7 @@ def render_view(site_config: dict):
             reason_clean = str(reason).replace("_", " ")
             if was_mod:
                 st.markdown(render_kpi_card_html(
-                    "Centinela Termodinámico en Runtime",
+                    "Verificador de Límites Físicos",
                     f"{clamped_v:.2f}",
                     f"Valor original ({val_test:.2f}) recortado por ley física ({reason_clean})",
                     "CLAMPING ACTIVO",
@@ -435,7 +435,7 @@ def render_view(site_config: dict):
                 ), unsafe_allow_html=True)
             else:
                 st.markdown(render_kpi_card_html(
-                    "Centinela Termodinámico en Runtime",
+                    "Verificador de Límites Físicos",
                     f"{clamped_v:.2f}",
                     "Valor dentro de los límites termodinámicos y ópticos admisibles (Lex Artis)",
                     "CONFORME",
@@ -443,7 +443,7 @@ def render_view(site_config: dict):
                 ), unsafe_allow_html=True)
 
         st.info(
-            "🛡️ **Doble Armadura de ADN Embebida (`ATHENA` × `ASTRAEA`):** Las dos cápsulas maestras autocontenidas que acompañan a este Core "
-            "—la **Bóveda de Cumplimiento Legal Embebida** (`compliance/regulatory_dna.json`) y el **Tribunal de la Física Real & ADN Científico Embebido** "
-            "(`physics/scientific_dna.json`)— se encuentran desplegadas e auditables en el bloque de blindaje inferior de la plataforma."
+            "📋 **Trazabilidad Normativa y Científica:** Los registros técnicos de respaldo de esta plataforma "
+            "—el **Marco Normativo Aplicable** (`compliance/regulatory_dna.json`) y la **Validación Físico-Matemática y Bibliografía** "
+            "(`physics/scientific_dna.json`)— se encuentran disponibles para consulta en los paneles inferiores de la aplicación."
         )

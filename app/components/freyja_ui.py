@@ -469,7 +469,7 @@ def render_regulatory_dna_shield(core_id: str = "osiris"):
         meces = dna.get("autoridad_tecnica", {}).get("nivel_marco_cualificaciones", "MECES 3 / EQF 7")
         timestamp = dna.get("timestamp_snapshot_utc", "2026-10-12")
 
-        with st.expander(f"🛡️ BÓVEDA DE CUMPLIMIENTO LEGAL EMBEBIDA ({total_normas} Normas Verificadas · {hash_sello[:24]}...)", expanded=False):
+        with st.expander(f"📋 MARCO NORMATIVO Y CUMPLIMIENTO LEGAL APLICABLE ({total_normas} Normas Verificadas · {hash_sello[:24]}...)", expanded=False):
             st.markdown(f"""
             <div style="background: rgba(15,23,42,0.8); border: 1px solid #1E293B; border-left: 4px solid #00F5A0; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
@@ -562,7 +562,7 @@ def render_scientific_dna_shield(core_id: str = "osiris"):
         total_papers = respaldo.get("total_papers_boveda", len(respaldo.get("papers_seminales_seleccionados", [])))
         papers = respaldo.get("papers_seminales_seleccionados", [])
 
-        with st.expander(f"⚖️ TRIBUNAL DE LA FÍSICA REAL & ADN CIENTÍFICO EMBEBIDO ({len(invariantes)} Invariantes · {total_papers} Papers · {hash_sello[:24]}...)", expanded=False):
+        with st.expander(f"📐 VALIDACIÓN FÍSICO-MATEMÁTICA Y REFERENCIAS CIENTÍFICAS ({len(invariantes)} Invariantes · {total_papers} Papers · {hash_sello[:24]}...)", expanded=False):
             st.markdown(f"""
             <div style="background: rgba(15,23,42,0.8); border: 1px solid #1E293B; border-left: 4px solid #38BDF8; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
@@ -581,7 +581,7 @@ def render_scientific_dna_shield(core_id: str = "osiris"):
             col_p1, col_p2, col_p3 = st.columns(3)
             col_p1.metric("Papers Seminales Indexados", total_papers)
             col_p2.metric("Invariantes Físicas Activas", len(invariantes))
-            col_p3.metric("Política Algorítmica", "Zero-Smoke / HITL")
+            col_p3.metric("Política Algorítmica", "Física Determinista / HITL")
 
             if ecuacion_latex:
                 st.markdown("<strong style='color:#38BDF8; font-size:0.85rem;'>📐 Formulación Matemática & Ecuaciones Gobernantes:</strong>", unsafe_allow_html=True)

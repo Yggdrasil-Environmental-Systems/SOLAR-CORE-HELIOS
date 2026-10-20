@@ -468,7 +468,7 @@ def render_regulatory_dna_shield(core_id: str = "osiris"):
         meces = dna.get("autoridad_tecnica", {}).get("nivel_marco_cualificaciones", "MECES Nivel 3 · EQF Level 7")
         timestamp = dna.get("timestamp_snapshot_utc", "2026-10-16")
 
-        with st.expander(f"🛡️ BÓVEDA DE CUMPLIMIENTO LEGAL EMBEBIDA ({total_normas} Normas Verificadas · {hash_sello[:24]}...)", expanded=False):
+        with st.expander(f"📋 MARCO NORMATIVO Y CUMPLIMIENTO LEGAL APLICABLE ({total_normas} Normas Verificadas · {hash_sello[:24]}...)", expanded=False):
             header_html = f"""
             <div style="background: rgba(15,23,42,0.85); border: 1px solid #1E293B; border-left: 4px solid #00F5A0; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
@@ -561,11 +561,11 @@ def render_scientific_dna_shield(core_id: str = "osiris"):
         respaldo = dna.get("respaldo_epistemico", {})
         total_papers = respaldo.get("total_papers_boveda", len(respaldo.get("papers_seminales_seleccionados", [])))
 
-        with st.expander(f"⚖️ TRIBUNAL DE LA FÍSICA REAL & ADN CIENTÍFICO EMBEBIDO ({len(invariantes)} Invariantes · {total_papers} Publicaciones · {hash_sello[:24]}...)", expanded=False):
+        with st.expander(f"📐 VALIDACIÓN FÍSICO-MATEMÁTICA Y REFERENCIAS CIENTÍFICAS ({len(invariantes)} Invariantes · {total_papers} Publicaciones · {hash_sello[:24]}...)", expanded=False):
             sci_header_html = f"""
             <div style="background: rgba(15,23,42,0.85); border: 1px solid #1E293B; border-left: 4px solid #38BDF8; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                    <strong style="color: #F8FAFC; font-size: 0.9rem;">Certificación Físico-Matemática & Centinela Termodinámico (ISO/IEC 42001)</strong>
+                    <strong style="color: #F8FAFC; font-size: 0.9rem;">Verificación de Restricciones Físico-Matemáticas y Modelos de Referencia (ISO/IEC 42001)</strong>
                     <span style="color: #38BDF8; font-family: monospace; font-size: 0.75rem; font-weight: bold;">{hash_sello}</span>
                 </div>
                 <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 6px;">
