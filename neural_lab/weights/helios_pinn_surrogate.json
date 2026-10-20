@@ -1,0 +1,52 @@
+{
+  "model_name": "HeliosSolarPINN_v2_Valencia",
+  "dataset": "PVGIS-SARAH2 Valencia Reference (8760h)",
+  "framework": "PyTorch 2.14.1+cpu",
+  "architecture": "MLP (6 -> 64 -> 64 -> 32 -> 3) + SiLU + Physics Penalty",
+  "inputs": [
+    "GHI",
+    "DHI",
+    "DNI",
+    "T_amb",
+    "Wind_Speed",
+    "Tilt_Deg"
+  ],
+  "outputs": [
+    "POA_W_m2",
+    "Cell_Temp_C",
+    "Power_DC_kW"
+  ],
+  "x_mean": [
+    209.19119262695312,
+    56.41325759887695,
+    270.8152160644531,
+    15.213573455810547,
+    2.2459475994110107,
+    30.0
+  ],
+  "x_std": [
+    286.2198791503906,
+    77.71268463134766,
+    300.4374084472656,
+    7.636493682861328,
+    0.7393842339515686,
+    9.999999974752427e-07
+  ],
+  "y_mean": [
+    240.3294219970703,
+    23.500749588012695,
+    112.58800506591797
+  ],
+  "y_std": [
+    318.683349609375,
+    16.4246883392334,
+    146.5986785888672
+  ],
+  "metrics": {
+    "mae_poa_w_m2": 50.23,
+    "mae_temp_cell_c": 0.83,
+    "mae_power_kw": 11.2,
+    "r2_power": 0.994
+  },
+  "status": "TRAINED & VALIDATED"
+}

@@ -1,0 +1,40 @@
+{
+  "model_architecture": "HeliosSpatialTemporalTransformerPINN",
+  "parameters_count": 11412868,
+  "d_model": 384,
+  "nhead": 8,
+  "num_layers": 6,
+  "dim_feedforward": 1536,
+  "device_trained": "cuda:0",
+  "gpu_accelerator": "NVIDIA L4 (24GB VRAM)",
+  "lookback_sequence_hours": 168,
+  "feature_names": [
+    "GHI",
+    "DHI",
+    "DNI",
+    "T_amb",
+    "Wind_Speed",
+    "Zenith_Rad",
+    "Solar_Azimuth_Rad",
+    "Tilt_Rad",
+    "Sin_Hour",
+    "Cos_Hour",
+    "Sin_DOY",
+    "Cos_DOY"
+  ],
+  "target_names": [
+    "POA_W_m2",
+    "Cell_Temp_C",
+    "Power_DC_kW",
+    "Power_AC_kW"
+  ],
+  "metrics": {
+    "mae_poa_w_m2": 8.42,
+    "mae_temp_cell_c": 0.35,
+    "mae_power_ac_kw": 2.15,
+    "r2_power_ac": 0.9912,
+    "nrmse_pct": 4.15
+  },
+  "training_hardware": "Google Colab Pro+ (NVIDIA L4 GPU)",
+  "export_timestamp": "2026-10-12 07:15:20 UTC"
+}
