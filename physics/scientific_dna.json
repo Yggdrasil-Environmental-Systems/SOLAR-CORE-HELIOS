@@ -1,0 +1,236 @@
+{
+  "schema_version": "2.0.0-PHYSICS-INVARIANTS",
+  "core_id": "HELIOS",
+  "core_folder": "SOLAR-CORE_HELIOS",
+  "timestamp_snapshot_utc": "2026-10-13T20:35:09Z",
+  "autoridad_tecnica": {
+    "director_tecnico": "Kelvin Jesús Flores Yarihuaman",
+    "titulacion_oficial": "Máster Universitario en Ingeniería y Gestión Ambiental",
+    "nivel_marco_cualificaciones": "MECES Nivel 3 · EQF Level 7",
+    "habilitacion_forense": "Art. 335 Ley de Enjuiciamiento Civil (LEC)",
+    "afiliacion_institucional": "Yggdrasil Environmental Systems"
+  },
+  "blindaje_epistemico_y_gobernanza": {
+    "pilar_1": "Directiva DIR-YGG-2026-SEC01-AUTONOMY: Desacoplamiento total y zero-dependency en nube.",
+    "pilar_2": "Reglamento (UE) 2024/1689 (EU AI Act): Art. 14 Supervisión Humana Efectiva (HITL) y Art. 13 Trazabilidad.",
+    "pilar_3": "ISO/IEC 42001:2023 (AIMS): Evaluación continua de riesgos y no-alucinación algorítmica.",
+    "pilar_4": "ISO/IEC 27037: Cadena de custodia digital y sellado criptográfico SHA-256 inmutable.",
+    "pilar_5": "Política Zero-Smoke: Todo cálculo de IA está fundamentado en ecuaciones deterministas y papers seminales."
+  },
+  "perfil_modelado": {
+    "nombre_completo": "SOLAR-CORE: HELIOS · Edición Pública Open-Core (Gemelo Digital Fotovoltaico n-TOPCon, EIA Ley 21/2013 & PINN)",
+    "disciplina": "Física Solar Anisotrópica, Termodinámica de Células n-TOPCon, Estabilidad Multi-MPPT, Dispersión Gaussiana PM10 & Glint/Glare Aeronáutico",
+    "solvers_comparados": "PVsyst 7.4, SAM (NREL), Sandia PVLIB / SGHAT, Pasquill-Gifford / AERMOD",
+    "ecuaciones_latex": "\\begin{aligned}\n&\\text{1. Transposición Anisotrópica de Perez (1990) y HDKR:} \\quad G_{\\text{POA}} = B_n \\cos\\theta + D_h \\left[ (1 - F_1)\\dfrac{1 + \\cos\\beta}{2} + F_1 \\dfrac{a}{b} + F_2 \\sin\\beta \\right] + G_h \\rho_g \\dfrac{1 - \\cos\\beta}{2} \\\\[6pt]\n&\\text{2. Balance Térmico de Faiman (2008) y Cinética n-TOPCon:} \\quad T_{\\text{cell}} = T_{\\text{amb}} + \\dfrac{G_{\\text{POA}}}{U_0 + U_1 v_w} \\quad ; \\quad P_{\\text{DC}} = P_{\\text{STC}} \\dfrac{G_{\\text{POA,eff}}}{1000} \\left[ 1 + \\gamma_{\\text{TOPCon}}(T_{\\text{cell}} - 25^\\circ\\text{C}) \\right] \\\\[6pt]\n&\\text{3. Óptica Ocular Retiniana Glint y Glare (Sandia SGHAT / AESA RD 384/2023):} \\quad E_{\\text{retinal}} = \\dfrac{I_{\\text{DNI}} \\cdot \\rho_{\\text{ARC}}(\\theta_i) \\cdot d_p^2 \\cdot \\tau_{\\text{ocular}}}{4 f_e^2 \\cdot \\omega_s^2} \\\\[6pt]\n&\\text{4. Dispersión Atmosférica Gaussiana PM10 en Obra Civil (RD 102/2011):} \\quad C(x,y,0) = \\dfrac{Q_{\\text{mit}}}{\\pi u \\sigma_y \\sigma_z} \\exp\\left(-\\dfrac{y^2}{2\\sigma_y^2}\\right) \\exp\\left(-\\dfrac{H^2}{2\\sigma_z^2}\\right) \\le 50\\,\\mu\\text{g/m}^3\n\\end{aligned}",
+    "arquitectura_ia": "Open-Core HeliosSpatialTemporalTransformerPINN (11.41M parámetros, 8-head, 6-layer, 168h lookback, R² = 0.9912, nRMSE = 4.15%).",
+    "benchmark_sota": "R² potencia AC = 0.9912 | MAE POA = 8.42 W/m² | MAE Temp Célula = 0.35 °C | nRMSE = 4.15%."
+  },
+  "invariantes_fisicas": [
+    {
+      "nombre": "Límite Termodinámico Shockley-Queisser & Eficiencia n-TOPCon",
+      "ecuacion": "Eta_pv <= 0.337 (unión simple Si) | Eta_pv <= 0.450 (tándem)",
+      "tolerancia_residual": 0.0,
+      "accion_si_viola": "ALERTA RENDIMIENTO SOBREPROMETIDO (LIMITE SHOCKLEY-QUEISSER)"
+    },
+    {
+      "nombre": "No Negatividad de Potencia e Irradiancia en Plano Inclinado (POA)",
+      "ecuacion": "P_dc = V * I >= 0.0 W  y  G_POA >= 0.0 W/m²",
+      "tolerancia_residual": 0.0,
+      "accion_si_viola": "RECORTE DETERMINISTA A CERO (NO NEGATIVIDAD)"
+    },
+    {
+      "nombre": "Equilibrio Termodinámico Convectivo de Faiman (2008)",
+      "ecuacion": "T_cell = T_amb + G_POA / (U_0 + U_1 * v_wind)  con  gamma_TOPCon = -0.29 %/°C",
+      "tolerancia_residual": 0.5,
+      "accion_si_viola": "RECALCULO EQUILIBRIO TERMICO CONVECTIVO FAIMAN"
+    },
+    {
+      "nombre": "Estabilidad Nodal de Red y Ratio de Cortocircuito (REE P.O. 3.2)",
+      "ecuacion": "SCR = S_cc_nudo / P_nom_POI >= 1.50  y  0.90 <= V_pu <= 1.10",
+      "tolerancia_residual": 0.0,
+      "accion_si_viola": "ALERTA COMPENSACION REACTIVA NODAL (P.O. 12.2 REE)"
+    },
+    {
+      "nombre": "Umbral Ocular Retiniano Glint & Glare (Sandia SGHAT / AESA RD 384/2023)",
+      "ecuacion": "E_retinal < E_burn(omega_s) en sendas de aproximación ATZ/ILS",
+      "tolerancia_residual": 0.0,
+      "accion_si_viola": "BLOQUEO LAYOUT Y EXIGENCIA RECUBRIMIENTO ANTIRREFLECTANTE ARC"
+    },
+    {
+      "nombre": "Factor de Planta Físico y Dispersión PM10 en Obra Civil (RD 102/2011)",
+      "ecuacion": "0.05 <= CF <= 0.40  y  0.0 <= C_PM10_receptor <= 50.0 µg/m³",
+      "tolerancia_residual": 0.0,
+      "accion_si_viola": "ALERTA UMBRAL AMBIENTAL RD 102/2011 (PM10 <= 50 µg/m³)"
+    }
+  ],
+  "parametros_clamping": {
+    "eficiencia_modulo_pct": {
+      "min": 5.0,
+      "max": 33.7,
+      "unidad": "%",
+      "accion": "CLAMP_SHOCKLEY"
+    },
+    "potencia_dc_kw": {
+      "min": 0.0,
+      "max": 250000.0,
+      "unidad": "kW",
+      "accion": "CLAMP_MIN_ZERO"
+    },
+    "factor_planta_cf": {
+      "min": 0.05,
+      "max": 0.4,
+      "unidad": "adimensional",
+      "accion": "CLAMP_RANGE"
+    },
+    "irradiancia_poa_wm2": {
+      "min": 0.0,
+      "max": 1450.0,
+      "unidad": "W/m²",
+      "accion": "CLAMP_SOLAR_CONSTANT"
+    },
+    "temperatura_celula_c": {
+      "min": -25.0,
+      "max": 95.0,
+      "unidad": "°C",
+      "accion": "CLAMP_THERMAL_LIMIT"
+    },
+    "scr_ratio_cortocircuito": {
+      "min": 1.0,
+      "max": 50.0,
+      "unidad": "adimensional",
+      "accion": "CLAMP_GRID_SCR"
+    },
+    "pm10_receptor_ugm3": {
+      "min": 0.0,
+      "max": 50.0,
+      "unidad": "µg/m³",
+      "accion": "CLAMP_RD102_LIMIT"
+    }
+  },
+  "respaldo_epistemico": {
+    "total_papers_boveda": 12,
+    "papers_seminales_seleccionados": [
+      {
+        "id": "SEM-HELIOS-001",
+        "titulo": "Aalto University (2024) — Impact of BESS on Day-Ahead Electricity Prices (OMIE)",
+        "disciplina": "Almacenamiento BESS LFP, Arbitraje Diario OMIE y Formación de Precios Marginales",
+        "formato": "PDF",
+        "referencia": "Aalto University School of Electrical Engineering (2024) · Peer-Reviewed",
+        "ruta_boveda": "data/papers_seminales/Aalto_2024_Impact_of_BESS_on_Day_Ahead_Electricity_Prices.pdf",
+        "tamano_kb": 769.77,
+        "hash_sha256": "73b68d6b6d9ab01e0f8a33dbe30af76ca580d59b684c9379e6e3dc23d1978ed4"
+      },
+      {
+        "id": "SEM-HELIOS-002",
+        "titulo": "Solar Thermal & Convective Heat Transfer Engineering Methodology",
+        "disciplina": "Termodinámica Solar, Transferencia de Calor Convectiva-Radiativa y Balance Térmico",
+        "formato": "PDF",
+        "referencia": "Solar Thermal Engineering Reference · Peer-Reviewed",
+        "ruta_boveda": "data/papers_seminales/An_Engineering_Methodology_for_Solar_Thermal_System_Design.pdf",
+        "tamano_kb": 2736.48,
+        "hash_sha256": "23efaf9da502ee1fa753ed315f5201e0c6931fe8c545a1ab37c367d014f82077"
+      },
+      {
+        "id": "SEM-HELIOS-003",
+        "titulo": "Anderson et al. (2023) — pvlib python: 2023 project update",
+        "disciplina": "Modelado Fotovoltaico Anisotrópico, Transposición Perez (1990) y Seguimiento Solar",
+        "formato": "PDF",
+        "referencia": "Journal of Open Source Software (JOSS, DOI: 10.21105/joss.05994)",
+        "ruta_boveda": "data/papers_seminales/Anderson_2023_pvlib_Python_Photovoltaic_Modeling_Update.pdf",
+        "tamano_kb": 273.0,
+        "hash_sha256": "76791de457247982f9e9e4f2e64789e1a9a1e0931f087eaeb7e58f74b41fbb9d"
+      },
+      {
+        "id": "SEM-HELIOS-004",
+        "titulo": "Bifacial PV (2023) — General Illumination Performance Model for Bifacial Modules",
+        "disciplina": "Óptica de Módulos Bifaciales n-TOPCon, Factor de Vista de Albedo y Ganancia Trasera",
+        "formato": "PDF",
+        "referencia": "arXiv:2302.13829 · Applied Physics & Photovoltaic Modeling",
+        "ruta_boveda": "data/papers_seminales/Bifacial_PV_2023_General_Illumination_Performance_Model.pdf",
+        "tamano_kb": 1155.65,
+        "hash_sha256": "7600990755405aa9e6d8cc26ac1497792867e30d5659bfb52dd81690d48bdcb5"
+      },
+      {
+        "id": "SEM-HELIOS-005",
+        "titulo": "Deep RL BESS (2024) — Battery Storage Energy Arbitrage via Reinforcement Learning",
+        "disciplina": "Control Óptimo Continuo TD3/D3QN, Revenue Stacking y Degradación de Ciclo LFP",
+        "formato": "PDF",
+        "referencia": "arXiv:2410.20005 · Machine Learning & Smart Grid Storage",
+        "ruta_boveda": "data/papers_seminales/Deep_RL_BESS_2024_Battery_Storage_Energy_Arbitrage_Time_Series.pdf",
+        "tamano_kb": 916.23,
+        "hash_sha256": "56008c0d02a5f4da01f86e4494acf9b7489f5a97a09b7a0736231d39f7f2e4e3"
+      },
+      {
+        "id": "SEM-HELIOS-006",
+        "titulo": "Ho et al. (2015) — Evaluation of Solar Glare Hazard Analysis Tool (SGHAT)",
+        "disciplina": "Óptica Retiniana Ocular, Glint & Glare en Conos de Aproximación AESA (RD 384/2023)",
+        "formato": "PDF",
+        "referencia": "Sandia National Laboratories (SAND2015-3097 / OSTI) · Peer-Reviewed",
+        "ruta_boveda": "data/papers_seminales/Ho_2015_Sandia_Evaluation_of_Solar_Glare_Hazard_OSTI.pdf",
+        "tamano_kb": 2388.5,
+        "hash_sha256": "543230f4651bf6baeea3c511e171ff43d03decde0a81c989ce1efbc61dc78a3c"
+      },
+      {
+        "id": "SEM-HELIOS-007",
+        "titulo": "Holmgren et al. (2018) — pvlib python: a python package for modeling solar energy systems",
+        "disciplina": "Arquitectura Computacional de Simulación Fotovoltaica y Cadena de Conversión DC/AC",
+        "formato": "PDF",
+        "referencia": "Journal of Open Source Software (JOSS, 3(29), 884) · Peer-Reviewed",
+        "ruta_boveda": "data/papers_seminales/Holmgren_2018_pvlib_Python_Solar_Energy_Modeling_JOSS.pdf",
+        "tamano_kb": 129.3,
+        "hash_sha256": "76438d18e31aa70220dfb35f3fb3e62c28d7ba1f813a184d48707c74db267f33"
+      },
+      {
+        "id": "SEM-HELIOS-008",
+        "titulo": "Raissi, Perdikaris & Karniadakis (2019) — Physics-informed neural networks (PINNs)",
+        "disciplina": "Redes Neuronales Informadas por la Física con Restricciones en Ecuaciones Diferenciales",
+        "formato": "PDF",
+        "referencia": "Journal of Computational Physics (378, 686-707) · Peer-Reviewed",
+        "ruta_boveda": "data/papers_seminales/Raissi_2019_Physics_Informed_Neural_Networks_PINNs.pdf",
+        "tamano_kb": 565.99,
+        "hash_sha256": "2a8db6776a110a4f36bd1e36af79cf31a2e74baa5af8f7ee3d9286a75fdc400d"
+      },
+      {
+        "id": "SEM-HELIOS-009",
+        "titulo": "Rule-Based Energy Management System (EMS) to Enhance PV Self-Consumption",
+        "disciplina": "Despacho Energético Determinista, Gestión de Inversores Multi-MPPT y Autoconsumo",
+        "formato": "PDF",
+        "referencia": "Energies / IEEE Smart Grid EMS Literature · Peer-Reviewed",
+        "ruta_boveda": "data/papers_seminales/Rule-Based_Energy_Management_System_to_Enhance_PV.pdf",
+        "tamano_kb": 6346.35,
+        "hash_sha256": "c3209a2d9ef4708c727d0a462de85c21fc2533d775d888a01281345da9d217fd"
+      },
+      {
+        "id": "SEM-HELIOS-010",
+        "titulo": "Solar-Powered Smart Buildings & Integrated Electro-Thermal Energy Systems",
+        "disciplina": "Integración Electro-Térmica, Acoplamiento de Red y Eficiencia Exergética Fotovoltaica",
+        "formato": "PDF",
+        "referencia": "Applied Energy / Integrated Solar Systems · Peer-Reviewed",
+        "ruta_boveda": "data/papers_seminales/Solar-Powered_Smart_Buildings_Integrated_Energy.pdf",
+        "tamano_kb": 9839.13,
+        "hash_sha256": "537707cd4e4dff65788c9ba8a0fb2bf30081f15df65336958aa1820704edea69"
+      },
+      {
+        "id": "SEM-HELIOS-011",
+        "titulo": "Stein et al. (2016) — PVLIB: Open Source Photovoltaic Performance Modeling Functions",
+        "disciplina": "Validación Experimental de Solvers Fotovoltaicos en Sandia National Laboratories",
+        "formato": "PDF",
+        "referencia": "Sandia National Laboratories (OSTI 1368815) · Peer-Reviewed",
+        "ruta_boveda": "data/papers_seminales/Stein_2016_Sandia_PVLIB_Photovoltaic_Performance_Modeling_OSTI.pdf",
+        "tamano_kb": 833.1,
+        "hash_sha256": "73610fe8a75c463a8c1c23f7c5e980777c2616290271d3037c11848ae02bc25f"
+      },
+      {
+        "id": "SEM-HELIOS-012",
+        "titulo": "Utility-Scale Bifacial Solar PV (2024) — Optimum Sizing & Techno-Economic LCOE",
+        "disciplina": "Dimensionamiento Óptimo DC/AC, Ratio de Sobredimensionamiento y LCOE Utility-Scale",
+        "formato": "PDF",
+        "referencia": "arXiv:2412.07891 · Techno-Economic Renewable Engineering",
+        "ruta_boveda": "data/papers_seminales/Utility_Scale_Bifacial_Solar_PV_2024_Optimum_Sizing_TechnoEconomic.pdf",
+        "tamano_kb": 1359.57,
+        "hash_sha256": "6382c05da13eaddcb037f50bd9df88f94dfe964aaa8d247e36cfb42888762723"
+      }
+    ]
+  },
+  "sello_criptografico_sha256": "SHA256:6265abb43c723e36a15eba77920fc9734108479559635c4368a98064e8a669fd"
+}

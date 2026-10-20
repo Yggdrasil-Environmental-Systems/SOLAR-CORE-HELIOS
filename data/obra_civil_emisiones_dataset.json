@@ -1,0 +1,24 @@
+{
+  "fase": "Obra Civil e Hincado de Estructuras (Parque Solar)",
+  "duracion_meses": 4,
+  "maquinaria_pesada_activa": [
+    {"tipo": "Retroexcavadora de orugas", "unidades": 2, "potencia_kw": 120, "factor_emision_pm10_g_kwh": 0.08},
+    {"tipo": "Hincadora de perfiles", "unidades": 2, "potencia_kw": 75, "factor_emision_pm10_g_kwh": 0.05},
+    {"tipo": "Camion Dumper de 20t", "unidades": 3, "potencia_kw": 240, "factor_emision_pm10_g_kwh": 0.12},
+    {"tipo": "Zanjadora continua", "unidades": 1, "potencia_kw": 90, "factor_emision_pm10_g_kwh": 0.06}
+  ],
+  "polvo_fugitivo_resuspension": {
+    "tasa_emision_sin_riego_g_s": 0.45,
+    "eficiencia_humectacion_cisterna_pct": 75.0,
+    "tasa_emision_con_riego_g_s": 0.1125
+  },
+  "resultados_modelizacion_sotavento_100m": {
+    "pm10_fondo_ideib_ug_m3": 21.6,
+    "incremento_obra_sin_riego_ug_m3": 38.2,
+    "concentracion_total_sin_riego_ug_m3": 59.8,
+    "estado_sin_riego": "NO_CONFORME (Supera 50 ug/m3)",
+    "incremento_obra_con_riego_ug_m3": 6.8,
+    "concentracion_total_con_riego_ug_m3": 28.4,
+    "estado_con_riego": "CONFORME (Dentro de limite de 50 ug/m3)"
+  }
+}

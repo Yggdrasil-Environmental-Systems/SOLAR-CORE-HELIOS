@@ -1,0 +1,72 @@
+/* SOLAR-CORE: HELIOS - Corporate Styling (Freyja Brand System) */
+:root {
+    --primary-solar: #FFD60A;
+    --primary-hover: #FFC300;
+    --dark-bg: #0D1117;
+    --card-bg: #161B22;
+    --card-border: #30363D;
+    --text-primary: #F0F6FC;
+    --text-muted: #8B949E;
+    --success-green: #30D158;
+    --danger-red: #FF453A;
+}
+
+.stApp {
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+}
+
+.helios-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.helios-card:hover {
+    border-color: var(--primary-solar);
+    transform: translateY(-2px);
+}
+
+.kpi-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.kpi-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-solar);
+}
+
+.kpi-subtext {
+    font-size: 0.80rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.badge-compliant {
+    background-color: rgba(48, 209, 88, 0.15);
+    color: var(--success-green);
+    border: 1px solid var(--success-green);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-alert {
+    background-color: rgba(255, 69, 58, 0.15);
+    color: var(--danger-red);
+    border: 1px solid var(--danger-red);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}

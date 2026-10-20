@@ -1,0 +1,45 @@
+{
+  "catalog_description": "Catálogo Oficial de Escenarios de Referencia Auditados y Gemelos Digitales de SOLAR-CORE: HELIOS (España)",
+  "active_sites": [
+    {
+      "site_id": "FUENTEJARA-PV",
+      "display_name": "Parque Solar Fuentejara (500 kWp | Valencia - Zona Climática B3) [ESCENARIO DE REFERENCIA AUDITADO]",
+      "status": "VALIDADO / AUDITADO",
+      "region": "Comunitat Valenciana (Zona Climática B3 CTE)",
+      "lat": 39.47,
+      "lon": -0.40,
+      "peak_power_kwp": 500.0,
+      "tilt_deg": 30.0,
+      "azimuth_deg": 0.0,
+      "ghi_kwh_m2": 1720.0,
+      "specific_yield_kwh_kwp": 1680.0,
+      "pr": 0.815,
+      "capex_wp": 0.72,
+      "opex_kwp_year": 9.0,
+      "ppa_price_eur_mwh": 60.0,
+      "tier": "Escenario de Referencia Auditado (Generación Distribuida / Red MT 20 kV)",
+      "accreditation": "MECES Nivel 3 · EQF Level 7 (Art. 335 LEC)",
+      "legal_framework": "Ley 21/2013 | RD 102/2011 | DPH | MT 20 kV"
+    },
+    {
+      "site_id": "JARAMA-SUR-MAD",
+      "display_name": "Planta Solar Jarama-Sur (4,95 MWp | Madrid - Zona Climática D3) [GEMELO DIGITAL PARAMÉTRICO]",
+      "status": "GEMELO DIGITAL PARAMÉTRICO (ISO 23247)",
+      "region": "Comunidad de Madrid (Sureste / Vega del Jarama - Zona Climática D3 CTE)",
+      "lat": 40.24,
+      "lon": -3.56,
+      "peak_power_kwp": 4950.0,
+      "tilt_deg": 32.0,
+      "azimuth_deg": 0.0,
+      "ghi_kwh_m2": 1785.0,
+      "specific_yield_kwh_kwp": 1701.0,
+      "pr": 0.842,
+      "capex_wp": 0.65,
+      "opex_kwp_year": 8.5,
+      "ppa_price_eur_mwh": 52.0,
+      "tier": "Gemelo Digital Utility-Scale (8 540 módulos n-TOPCon 580 Wp)",
+      "accreditation": "MECES Nivel 3 · EQF Level 7 (Art. 335 LEC)",
+      "legal_framework": "Directiva RED III | RD 384/2023 AESA SGHAT | Red Natura 2000 | RDL 23/2020"
+    }
+  ]
+}

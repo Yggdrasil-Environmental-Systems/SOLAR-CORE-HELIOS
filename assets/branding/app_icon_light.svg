@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    
+    <radialGradient id="cardGlow_solar_helios_light" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#FFD60A" stop-opacity="0.12"/>
+      <stop offset="70%" stop-color="#FAFCFA" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="borderGrad_solar_helios_light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD60A" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#CBD5E1" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFD60A" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#cardGlow_solar_helios_light)" stroke="url(#borderGrad_solar_helios_light)" stroke-width="3"/>
+  <circle cx="256" cy="230" r="120" fill="none" stroke="#FFD60A" stroke-width="1.2" stroke-dasharray="4 8" opacity="0.35"/>
+
+  
+        <!-- Símbolo Solar: Corona de Irradiancia & Núcleo Fotovoltaico -->
+        <circle cx="256" cy="230" r="38" fill="#FFD60A" opacity="0.25" stroke="#FFD60A" stroke-width="4"/>
+        <circle cx="256" cy="230" r="16" fill="#FFD60A"/>
+        <circle cx="256" cy="230" r="7" fill="#FFFFFF"/>
+        <g stroke="#FFE770" stroke-width="3" stroke-linecap="round">
+          <line x1="256" y1="165" x2="256" y2="145"/>
+          <line x1="256" y1="295" x2="256" y2="315"/>
+          <line x1="191" y1="230" x2="171" y2="230"/>
+          <line x1="321" y1="230" x2="341" y2="230"/>
+          <line x1="210" y1="184" x2="196" y2="170"/>
+          <line x1="302" y1="276" x2="316" y2="290"/>
+          <line x1="210" y1="276" x2="196" y2="290"/>
+          <line x1="302" y1="184" x2="316" y2="170"/>
+        </g>
+        
+
+  <!-- Tipografía Suiza & Endoso Yggdrasil -->
+  <g text-anchor="middle">
+    <text x="256" y="85" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#475569" letter-spacing="4">YGGDRASIL COMPUTING</text>
+    <text x="256" y="388" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="24" font-weight="800" fill="#0F172A" letter-spacing="2">SOLAR-CORE</text>
+    <text x="256" y="415" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="13" font-weight="700" fill="#FFD60A" letter-spacing="4">HELIOS</text>
+    <text x="256" y="442" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#64748B" letter-spacing="2">KERNEL ANGLE · 120°S-E</text>
+  </g>
+</svg>

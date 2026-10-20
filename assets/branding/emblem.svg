@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <radialGradient id="emblemGlow_solar_helios" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD60A" stop-opacity="0.25"/>
+      <stop offset="70%" stop-color="#070B12" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#070B12" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="500" height="500" fill="url(#emblemGlow_solar_helios)"/>
+  <rect x="15" y="15" width="470" height="470" rx="24" fill="none" stroke="#FFD60A" stroke-width="2" stroke-opacity="0.4"/>
+  <circle cx="250" cy="250" r="160" fill="none" stroke="#FFD60A" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.3"/>
+
+  <g transform="translate(250, 250) scale(1.15) translate(-256, -230)">
+    
+        <!-- Símbolo Solar: Corona de Irradiancia & Núcleo Fotovoltaico -->
+        <circle cx="256" cy="230" r="38" fill="#FFD60A" opacity="0.25" stroke="#FFD60A" stroke-width="4"/>
+        <circle cx="256" cy="230" r="16" fill="#FFD60A"/>
+        <circle cx="256" cy="230" r="7" fill="#FFFFFF"/>
+        <g stroke="#FFE770" stroke-width="3" stroke-linecap="round">
+          <line x1="256" y1="165" x2="256" y2="145"/>
+          <line x1="256" y1="295" x2="256" y2="315"/>
+          <line x1="191" y1="230" x2="171" y2="230"/>
+          <line x1="321" y1="230" x2="341" y2="230"/>
+          <line x1="210" y1="184" x2="196" y2="170"/>
+          <line x1="302" y1="276" x2="316" y2="290"/>
+          <line x1="210" y1="276" x2="196" y2="290"/>
+          <line x1="302" y1="184" x2="316" y2="170"/>
+        </g>
+        
+  </g>
+</svg>
